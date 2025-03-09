@@ -1,3 +1,33 @@
+// Create Open Menu Button
+let openMenuButton = document.createElement("button");
+openMenuButton.innerText = "Open Menu";
+openMenuButton.style.position = "fixed";
+openMenuButton.style.top = "20px";
+openMenuButton.style.left = "20px";
+openMenuButton.style.padding = "12px 24px";
+openMenuButton.style.backgroundColor = "transparent";
+openMenuButton.style.color = "white";
+openMenuButton.style.fontSize = "1.2rem";
+openMenuButton.style.border = "2px solid transparent";
+openMenuButton.style.borderRadius = "8px";
+openMenuButton.style.cursor = "pointer";
+openMenuButton.style.outline = "none";
+
+// Add Rainbow Outline Effect to Open Menu Button
+openMenuButton.style.background = "linear-gradient(90deg, #ff0000, #ff9900, #33cc33, #0066ff, #9900cc, #ff0066)";
+openMenuButton.style.backgroundSize = "400%";
+openMenuButton.style.animation = "gradientAnimation 3s ease infinite";
+
+// Open Menu Button Animation
+let style = document.createElement('style');
+style.innerHTML = `
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}`;
+document.head.appendChild(style);
+
 // Create Hack Menu Frame
 let menu = document.createElement("div");
 menu.style.position = "fixed";
@@ -12,6 +42,7 @@ menu.style.textAlign = "center";
 menu.style.fontSize = "1.5rem";
 menu.style.zIndex = "9999";
 menu.style.borderRadius = "15px"; // Rounded corners
+menu.style.display = "none"; // Hidden by default
 menu.innerHTML = "<h2>Settings</h2><br>";
 
 let buttons = [
@@ -65,11 +96,20 @@ closeButton.style.border = "none";
 closeButton.style.cursor = "pointer";
 closeButton.style.borderRadius = "8px";
 closeButton.addEventListener("click", function() {
-    menu.remove();
+    menu.style.display = "none"; // Hide the menu
 });
 
 menu.appendChild(closeButton);
 document.body.appendChild(menu);
+
+// Add the Open Menu Button to the page
+document.body.appendChild(openMenuButton);
+
+// When the open menu button is clicked, show the menu
+openMenuButton.addEventListener("click", function() {
+    menu.style.display = "block"; // Show the menu
+    openMenuButton.style.display = "none"; // Hide the open button after menu is opened
+});
 
 // Enable Dark Mode
 function enableDarkMode() {
