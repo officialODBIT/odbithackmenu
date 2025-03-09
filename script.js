@@ -2,7 +2,7 @@
 
 // code:
 
-// Create Open Menu Button
+// VERSION 1.0
 let openMenuButton = document.createElement("button");
 openMenuButton.innerText = "Open Hack Menu";
 openMenuButton.style.position = "fixed";
